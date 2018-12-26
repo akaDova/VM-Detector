@@ -7,7 +7,7 @@
 
 
 // check by cpuid instruction
-__declspec(dllexport) BOOL CheckByCPUID()
+__declspec(dllexport) BOOL __stdcall CheckByCPUID()
 {
 	int cpuinfo[4];
 	__cpuid(cpuinfo, 1);

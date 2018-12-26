@@ -4,5 +4,6 @@
 
 
 extern "C" {
-	__declspec(dllexport) BOOL CheckByCPUID();
+	// check by cpuid instruction
+	__declspec(dllexport) BOOL __stdcall CheckByCPUID();
 }
