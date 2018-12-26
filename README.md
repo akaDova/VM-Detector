@@ -1,2 +1,2 @@
 # VM-Detector
-detects VM
+detects VM, at least VMWare yet
