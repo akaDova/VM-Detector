@@ -1,2 +1,2 @@
 # VM-Detector
-detects VM, at least VMWare yet
+Detects VM, at least VMWare yet. Pure WinAPI.
