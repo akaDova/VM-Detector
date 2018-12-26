@@ -168,6 +168,11 @@
     <Image Include="small.ico" />
     <Image Include="WindowApp.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMDetector\VMDetector.vcxproj">
+      <Project>{5be77541-85c2-41bf-babc-eaef77b66f8d}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

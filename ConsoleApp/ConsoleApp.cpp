@@ -8,7 +8,7 @@
 
 #define CheckByCPUID "_CheckByCPUID@0"
 
-typedef BOOL (*LPVMCheck)();
+typedef BOOL (__stdcall *LPVMCheck)();
 
 LPCTSTR dllName = TEXT("VMDetector");
 

@@ -15,5 +15,6 @@ __declspec(dllexport) BOOL __stdcall CheckByCPUID()
 	int ecx = cpuinfo[2];
 	if (ecx >> 31 & 1)
 		return TRUE;
+
 	return FALSE;
 }

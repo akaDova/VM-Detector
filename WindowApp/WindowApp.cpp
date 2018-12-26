@@ -17,6 +17,8 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+LPVMCheck isVM = CheckByCPUID;
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -92,13 +94,18 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance;
 
+
+
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
 
    if (!hWnd)
    {
       return FALSE;
    }
+
+   
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -115,21 +122,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+	case WM_CREATE:
+		{
+			RECT rect;
+			GetClientRect(hWnd, &rect);
+
+			HWND hwndButton = CreateWindow(
+				TEXT("BUTTON"),  // Predefined class; Unicode assumed 
+				TEXT("CHECK!!"),      // Button text 
+				WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,  // Styles 
+				rect.left + 200,         // x position 
+				rect.top + 200,         // y position 
+				500,        // Button width
+				100,        // Button height
+				hWnd,     // Parent window
+				NULL,       // No menu.
+				(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE),
+				NULL);      // Pointer not needed.
+		}
+		break;
     case WM_COMMAND:
         {
-            int wmId = LOWORD(wParam);
-            // menu:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+			MessageBox(hWnd, isVM() ? TEXT("VM") : TEXT("not VM"), TEXT("Result"), NULL);
         }
         break;
     case WM_PAINT:
